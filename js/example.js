@@ -205,7 +205,19 @@ var SideMenu = function(blueprint3d, floorplanControls, modalEffects) {
   var tabs = {
     "FLOORPLAN" : $("#floorplan_tab"),
     "SHOP" : $("#items_tab"),
-    "DESIGN" : $("#design_tab")
+    "CAT1" : $("#cat1_tab"),
+    "CAT2" : $("#cat2_tab"),
+    "CAT3" : $("#cat3_tab"),
+    "CAT4" : $("#cat4_tab"),
+    "CAT5" : $("#cat5_tab"),
+    "CAT6" : $("#cat6_tab"),
+    "DOOR" : $("#doors_tab"),
+    "CAT8" : $("#cat8_tab"),
+    "CAT9" : $("#cat9_tab"),
+    "CAT10" : $("#cat10_tab"),
+    "CAT11" : $("#cat11_tab"),
+    "DESIGN" : $("#design_tab"),
+    "SC" : $("#opencart")
   }
 
   var scope = this;
@@ -223,7 +235,55 @@ var SideMenu = function(blueprint3d, floorplanControls, modalEffects) {
     "SHOP" : {
       "div" : $("#add-items"),
       "tab" : tabs.SHOP
-    }
+    },
+    "CAT1" : {
+          "div" : $("#add-items-1"),
+          "tab" : tabs.CAT1
+        },
+    "CAT2" : {
+          "div" : $("#add-items-2"),
+          "tab" : tabs.CAT2
+        },
+    "CAT3" : {
+          "div" : $("#add-items-3"),
+          "tab" : tabs.CAT3
+        },
+    "CAT4" : {
+          "div" : $("#add-items-4"),
+          "tab" : tabs.CAT4
+        },
+    "CAT5" : {
+          "div" : $("#add-items-5"),
+          "tab" : tabs.CAT5
+        },
+    "CAT6" : {
+          "div" : $("#add-items-6"),
+          "tab" : tabs.CAT6
+        },
+    "DOOR" : {
+      "div" : $("#add-items-7"),
+      "tab" : tabs.DOOR
+    },
+    "CAT8" : {
+          "div" : $("#add-items-8"),
+          "tab" : tabs.CAT8
+        },
+    "CAT9" : {
+          "div" : $("#add-items-9"),
+          "tab" : tabs.CAT9
+        },
+    "CAT10" : {
+          "div" : $("#add-items-10"),
+          "tab" : tabs.CAT10
+        },
+    "CAT11" : {
+          "div" : $("#add-items-11"),
+          "tab" : tabs.CAT11
+        },
+    "SC" : {
+      "div" : $("#add-items-sc"),
+      "tab" : tabs.SC
+    },
   }
 
   // sidebar state
@@ -291,6 +351,24 @@ var SideMenu = function(blueprint3d, floorplanControls, modalEffects) {
     newState.div.show()
 
     // custom actions
+     //появление блоков categories, когда нажата Add Items
+    if (newState == scope.states.SHOP) {
+      $("#categories").show(); //
+    }
+
+    if (newState == scope.states.FLOORPLAN || newState == scope.states.DEFAULT) {
+      $("#categories").hide();
+    }
+
+    // if (currentState == scope.states.SHOP && 
+    //   (newState != scope.states.DOOR || newState != scope.states.CAT1 || newState != scope.states.CAT2 || newState != scope.states.CAT3 || newState != scope.states.CAT4 || newState != scope.states.CAT5 || newState != scope.states.CAT6 || newState != scope.states.CAT7 || newState != scope.states.CAT8 || newState != scope.states.CAT9 || newState != scope.states.CAT10) 
+    //   || 
+    //   (currentState == scope.states.DOOR || currentState != scope.states.CAT1 || currentState != scope.states.CAT2 || currentState != scope.states.CAT3 || currentState != scope.states.CAT4 || currentState != scope.states.CAT5 || currentState != scope.states.CAT6 || currentState != scope.states.CAT7 || currentState != scope.states.CAT8 || currentState != scope.states.CAT9 || currentState != scope.states.CAT10) 
+    //   && newState != scope.states.SHOP) {
+    //   $("#categories").hide();
+    // }
+
+
     if (newState == scope.states.FLOORPLAN) {
       floorplanControls.updateFloorplanView();
       floorplanControls.handleWindowResize();
@@ -303,6 +381,251 @@ var SideMenu = function(blueprint3d, floorplanControls, modalEffects) {
     if (newState == scope.states.DEFAULT) {
       blueprint3d.three.updateWindowSize();
     }
+
+    //Отрисовка элементов корзины
+
+    var items = [
+   {
+      "name" : "Закрытая дверь",
+      "price": 8000,
+      "image" : "models/thumbnails/thumbnail_Screen_Shot_2014-10-27_at_8.04.12_PM.png",
+      "model" : "models/js/closed-door28x80_baked.js",
+      "category" : "7",
+      "type" : "7"
+    }, 
+    {
+      "name" : "Открытая дверь",
+      "price": 8000,
+      "image" : "models/thumbnails/thumbnail_Screen_Shot_2014-10-27_at_8.22.46_PM.png",
+      "model" : "models/js/open_door.js",
+      "category" : "7",
+      "type" : "7"
+    }, 
+    {
+      "name" : "Окно",
+      "price": 8000,
+      "image" : "models/thumbnails/thumbnail_window.png",
+      "model" : "models/js/whitewindow.js",
+      "category" : "9",
+      "type" : "3"
+    }, 
+    {
+      "name" : "Стул",
+      "price": 8000,
+      "image" : "models/thumbnails/thumbnail_Church-Chair-oak-white_1024x1024.jpg",
+      "model" : "models/js/gus-churchchair-whiteoak.js",
+      "category" : "3",
+      "type" : "1"
+    }, 
+    {
+      "name" : "Красное кресло",
+      "price": 8000,
+      "image" : "models/thumbnails/thumbnail_tn-orange.png",
+      "model" : "models/js/ik-ekero-orange_baked.js",
+      "category" : "2",
+      "type" : "1"
+    },
+    {
+      "name" : "Синее кресло",
+      "price": 8000,
+      "image" : "models/thumbnails/thumbnail_ekero-blue3.png",
+      "model" : "models/js/ik-ekero-blue_baked.js",
+      "category" : "2",
+      "type" : "1"
+    },
+    {
+      "name" : "Комод темный",
+      "price": 8000,
+      "image" : "models/thumbnails/thumbnail_matera_dresser_5.png",
+      "model" : "models/js/DWR_MATERA_DRESSER2.js",
+      "category" : "6",
+      "type" : "1"
+    }, 
+    {
+      "name" : "Комод белый",
+      "price": 8000,
+      "image" : "models/thumbnails/thumbnail_img25o.jpg",
+      "model" : "models/js/we-narrow6white_baked.js",
+      "category" : "6",
+      "type" : "1"
+    },  
+    {
+      "name" : "Прикроватный столик светлый",
+      "price": 8000,
+      "image" : "models/thumbnails/thumbnail_Blu-Dot-Shale-Bedside-Table.jpg",
+      "model" : "models/js/bd-shalebedside-smoke_baked.js",
+      "category" : "4",
+      "type" : "1"
+    }, 
+    {
+      "name" : "Тумбочка светлая",
+      "price": 8000,
+      "image" : "models/thumbnails/thumbnail_arch-white-oval-nightstand.jpg",
+      "model" : "models/js/cb-archnight-white_baked.js",
+      "category" : "8",
+      "type" : "1"
+    }, 
+    {
+      "name" : "Гардероб светлый",
+      "price": 8000,
+      "image" : "models/thumbnails/thumbnail_TN-ikea-kvikine.png",
+      "model" : "models/js/ik-kivine_baked.js",
+      "category" : "6",
+      "type" : "1"
+    }, 
+    {
+      "name" : "Кровать",
+      "price": 8000,
+      "image" : "models/thumbnails/thumbnail_nordli-bed-frame__0159270_PE315708_S4.JPG",
+      "model" : "models/js/ik_nordli_full.js",
+      "category" : "5",
+      "type" : "1"
+    }, 
+    {
+      "name" : "Книжная полка",
+      "price": 8000,
+      "image" : "models/thumbnails/thumbnail_kendall-walnut-bookcase.jpg",
+      "model" : "models/js/cb-kendallbookcasewalnut_baked.js",
+      "category" : "6",
+      "type" : "1"
+    }, 
+        {
+      "name" : "Медиаконсоль светлая",
+      "price": 8000,
+      "image" : "models/thumbnails/thumbnail_clapboard-white-60-media-console-1.jpg",
+      "model" : "models/js/cb-clapboard_baked.js",
+      "category" : "8",
+      "type" : "1"
+    }, 
+        {
+      "name" : "Медиаконсоль темная",
+      "price": 8000,
+      "image" : "models/thumbnails/thumbnail_moore-60-media-console-1.jpg",
+      "model" : "models/js/cb-moore_baked.js",
+      "category" : "8",
+      "type" : "1"
+    },
+    {
+      "name" : "Диван серый",
+      "price": 8000,
+      "image" : "models/thumbnails/thumbnail_rochelle-sofa-3.jpg",
+      "model" : "models/js/cb-rochelle-gray_baked.js",
+      "category" : "1",
+      "type" : "1"
+    }, 
+        {
+      "name" : "Деревянный сундук",
+      "price": 8000,
+      "image" : "models/thumbnails/thumbnail_teca-storage-trunk.jpg",
+      "model" : "models/js/cb-tecs_baked.js",
+      "category" : "8",
+      "type" : "1"
+    }, 
+        {
+      "name" : "Торшер",
+      "price": 8000,
+      "image" : "models/thumbnails/thumbnail_ore-white.png",
+      "model" : "models/js/ore-3legged-white_baked.js",
+      "category" : "10",
+      "type" : "1"
+    },
+    {
+      "name" : "Журнальный столик",
+      "price": 8000,
+      "image" : "models/thumbnails/thumbnail_stockholm-coffee-table__0181245_PE332924_S4.JPG",
+      "model" : "models/js/ik-stockholmcoffee-brown.js",
+      "category" : "4",
+      "type" : "1"
+    }, 
+    {
+      "name" : "Столик",
+      "price": 8000,
+      "image" : "models/thumbnails/thumbnail_Screen_Shot_2014-02-21_at_1.24.58_PM.png",
+      "model" : "models/js/GUSossingtonendtable.js",
+      "category" : "4",
+      "type" : "1"
+    }, 
+    {
+      "name" : "Обеденный стол",
+      "price": 8000,
+      "image" : "models/thumbnails/thumbnail_scholar-dining-table.jpg",
+      "model" : "models/js/cb-scholartable_baked.js",
+      "category" : "4",
+      "type" : "1"
+    }, 
+    {
+      "name" : "Обеденный стол",
+      "price": 8000,
+      "image" : "models/thumbnails/thumbnail_Screen_Shot_2014-01-28_at_6.49.33_PM.png",
+      "model" : "models/js/BlakeAvenuejoshuatreecheftable.js",
+      "category" : "4",
+      "type" : "1"
+    },
+    {
+      "name" : "Синий коврик",
+      "price": 8000,
+      "image" : "models/thumbnails/thumbnail_cb-blue-block60x96.png",
+      "model" : "models/js/cb-blue-block-60x96.js",
+      "category" : "11",
+      "type" : "8"
+    },
+    {
+      "name" : "Нью-Йорк постер",
+      "price": 8000,
+      "image" : "models/thumbnails/thumbnail_nyc2.jpg",
+      "model" : "models/js/nyc-poster2.js",
+      "category" : "11",
+      "type" : "2"
+    }
+   /*     
+   {
+      "name" : "",
+      "price": 8000,
+      "image" : "",
+      "model" : "",
+      "category" : "1",
+      "type" : "1"
+    }, 
+    */
+  ]
+
+
+    //Поиск по массиву объектов по названию
+    var getProdInfo = function(prodName) {
+      //
+      for (var i=0; i < items.length; i++) {
+              if (items[i].name === prodName) {
+                  return [items[i].image, items[i].price, items[i].desc];
+              }
+          }
+    };
+
+    if (newState == scope.states.SC) {
+
+        var itemsDivDoor = $("#add-items-sc");
+
+        var htmlDoor = blueprint3d.model.scene.getItems();
+
+
+        for (var obj in htmlDoor) {
+
+          var prodName = htmlDoor[obj].metadata.itemName;
+
+          var getProdInfoRes = getProdInfo(prodName);
+
+          var prodImg = getProdInfoRes[0];
+          var prodPrice = getProdInfoRes[1];
+          var prodDesc = getProdInfoRes[2] ? getProdInfoRes[2] : "&nbsp;";
+
+
+          var prodCode = '<hr /> <div> <div id="left"> <img id="tovar"' + ' src=' + prodImg + '> </div> <div id="right"> <div id="cart-title">' + prodName + '</div> <div id=cart-price>' + prodPrice + ' р.</div> <div id="cart-desc">' + prodDesc + '</div> <div> <a href="http://theunit.tilda.ws/" class="btn btn-default btn-sm" id=""> Купить </a> <a href="#" class="btn btn-default btn-sm" id=""> <span class="glyphicon glyphicon-remove"></span> </a> </div> </div> </div>'  
+
+          itemsDivDoor.append(prodCode);
+
+        }
+    }
+
+
  
     // set new state
     handleWindowResize();    
@@ -325,6 +648,20 @@ var SideMenu = function(blueprint3d, floorplanControls, modalEffects) {
   // TODO: this doesn't really belong here
   function initItems() {
     $("#add-items").find(".add-item").mousedown(function(e) {
+      var modelUrl = $(this).attr("model-url");
+      var itemType = parseInt($(this).attr("model-type"));
+      var metadata = {
+        itemName: $(this).attr("model-name"),
+        resizable: true,
+        modelUrl: modelUrl,
+        itemType: itemType
+      }
+
+      blueprint3d.model.scene.addItem(itemType, modelUrl, metadata);
+      setCurrentState(scope.states.DEFAULT);
+    });
+//.itemsPage
+    $(".itemsPage").find(".add-item").mousedown(function(e) { //mousedown - Кнопка мыши нажата
       var modelUrl = $(this).attr("model-url");
       var itemType = parseInt($(this).attr("model-type"));
       var metadata = {

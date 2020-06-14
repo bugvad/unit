@@ -6,22 +6,6 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/example.css" rel="stylesheet">
 
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript" >
-       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-       m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-       ym(62000098, "init", {
-            clickmap:true,
-            trackLinks:true,
-            accurateTrackBounce:true,
-            webvisor:true
-       });
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/62000098" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
-
     <script src="js/three.min.js"></script>
     <script src="js/blueprint3d.js"></script>
 
@@ -30,6 +14,7 @@
     
     <script src="js/items.js"></script>
     <script src="js/example.js"></script>
+    <meta charset="utf-8">
   </head>
 
   <body>
@@ -41,19 +26,66 @@
           <!-- Main Navigation -->
           <ul class="nav nav-sidebar">
             <li id="floorplan_tab"><a href="#">
-              Edit Floorplan
+              План
               <span class="glyphicon glyphicon-chevron-right pull-right"></span>
             </a></li>
             <li id="design_tab"><a href="#">
-              Design
+              Дизайн
               <span class="glyphicon glyphicon-chevron-right pull-right"></span>
             </a></li>
             <li id="items_tab"><a href="#">
-              Add Items
+              Магазин
               <span class="glyphicon glyphicon-chevron-right pull-right"></span>
             </a></li>
           </ul>
           <hr />
+
+          <ul class="nav nav-sidebar" id="categories" style="display: none;"> 
+            <li id="cat1_tab"><a href="#">
+              Диваны
+              <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+            </a></li>
+            <li id="cat2_tab"><a href="#">
+              Кресла
+              <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+            </a></li>
+            <li id="cat3_tab"><a href="#">
+              Стулья
+              <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+            </a></li>
+            <li id="cat4_tab"><a href="#">
+              Столы
+              <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+            </a></li>
+            <li id="cat5_tab"><a href="#">
+              Кровати
+              <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+            </a></li>
+            <li id="cat6_tab"><a href="#">
+              Шкафы
+              <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+            </a></li>
+            <li id="doors_tab"><a href="#">
+              Двери
+              <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+            </a></li>
+            <li id="cat8_tab"><a href="#">
+              Тумбочки
+              <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+            </a></li>
+            <li id="cat9_tab"><a href="#">
+              Окна
+              <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+            </a></li>
+<!--             <li id="cat10_tab"><a href="#">
+              Свет
+              <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+            </a></li> -->
+            <!-- <li id="cat11_tab"><a href="#">
+              Декор
+              <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+            </a></li> -->
+          </ul>
 
           <!-- Context Menu -->
           <div id="context-menu">
@@ -151,16 +183,21 @@
           <div id="viewer">
 
             <div id="main-controls">
-              <a href="#" class="btn btn-default btn-sm" id="new">
-                New Plan
+              <a href="#" class="btn btn-default btn-sm" id="new" style="display: none;">
+                Очистить
               </a>
-              <a href="#" class="btn btn-default btn-sm" id="saveFile">
-                Save Plan
+              <a href="#" class="btn btn-default btn-sm" id="saveFile" style="display: none;">
+                Скачать
               </a>
-              <a class="btn btn-sm btn-default btn-file">
+              <a class="btn btn-sm btn-default btn-file" style="display: none;">
                <input type="file" class="hidden-input" id="loadFile">
-               Load Plan
+               Загрузить
               </a>
+            </div>
+            <div id="opencart">
+                <a href="#" class="btn btn-default btn-sm">
+                Корзина
+                </a>
             </div>
 
             <div id="camera-controls">
@@ -204,18 +241,18 @@
 
               <button id="move" class="btn btn-sm btn-default">
                 <span class="glyphicon glyphicon-move"></span>
-                Move Walls
+                Перемещать
               </button>
               <button id="draw" class="btn btn-sm btn-default">
                 <span class="glyphicon glyphicon-pencil"></span>
-                Draw Walls
+                Рисовать
               </button>
               <button id="delete" class="btn btn-sm btn-default">
                 <span class="glyphicon glyphicon-remove"></span>
-                Delete Walls
+                Удалить
               </button>
               <span class="pull-right">
-                <button class="btn btn-primary btn-sm" id="update-floorplan">Done &raquo;</button>
+                <button class="btn btn-primary btn-sm" id="update-floorplan">Дальше &raquo;</button>
               </span>
 
             </div>
@@ -230,6 +267,107 @@
 
               <!-- Items added here by items.js -->
             </div>
+          </div>
+          <div class="itemsPage" id="add-items-1" style="display:none;">
+            <div class="row-7" id="items-wrapper-1"></div>
+          </div>
+          <div class="itemsPage" id="add-items-2" style="display:none;">
+            <div class="row-7" id="items-wrapper-2"></div>
+          </div>
+          <div class="itemsPage" id="add-items-3" style="display:none;">
+            <div class="row-7" id="items-wrapper-3"></div>
+          </div>
+          <div class="itemsPage" id="add-items-4" style="display:none;">
+            <div class="row-7" id="items-wrapper-4"></div>
+          </div>
+          <div class="itemsPage" id="add-items-5" style="display:none;">
+            <div class="row-7" id="items-wrapper-5"></div>
+          </div>
+          <div class="itemsPage" id="add-items-6" style="display:none;">
+            <div class="row-7" id="items-wrapper-6"></div>
+          </div>
+          <div class="itemsPage" id="add-items-7" style="display:none;">
+            <div class="row-7" id="items-wrapper-7"></div>
+          </div>
+          <div class="itemsPage" id="add-items-8" style="display:none;">
+            <div class="row-7" id="items-wrapper-8"></div>
+          </div>
+          <div class="itemsPage" id="add-items-9" style="display:none;">
+            <div class="row-7" id="items-wrapper-9"></div>
+          </div>
+          <div class="itemsPage" id="add-items-10" style="display:none;">
+            <div class="row-7" id="items-wrapper-10"></div>
+          </div>
+          <div class="itemsPage" id="add-items-11" style="display:none;">
+            <div class="row-7" id="items-wrapper-11"></div>
+          </div>
+          <!-- Add Items to shopping cart -->
+          <div id="add-items-sc">
+            <h1 id="sc">Корзина</h1>
+            <!-- <div class="row" id="items-wrapper"> -->
+              <!-- Items added here by items.js -->
+
+            <!-- <hr />
+            <div>
+              <div id="left">
+                <img id="tovar" src="models/thumbnails/thumbnail_Screen_Shot_2014-10-27_at_8.04.12_PM.png">
+              </div>
+              <div id="right">
+                <div id="cart-title">Закрытая дверь</div>
+                <div id=cart-price>10 000 р.</div>
+                <div id="cart-desc">Высота: 53 см Диаметр: 45 см Высота: 53 см Диаметр: 45 см</div>
+                <div>
+                  <a href="#" class="btn btn-default btn-sm" id="">
+                    Купить
+                  </a>
+                  <a href="#" class="btn btn-default btn-sm" id="">
+                    <span class="glyphicon glyphicon-remove"></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div>
+              <div id="left">
+                <img id="tovar" src="models/thumbnails/thumbnail_Screen_Shot_2014-10-27_at_8.04.12_PM.png">
+              </div>
+              <div id="right">
+                <div id="cart-title">Закрытая дверь</div>
+                <div id=cart-price>10 000 р.</div>
+                <div id="cart-desc">Высота: 53 см Диаметр: 45 см Высота: 53 см Диаметр: 45 см</div>
+                <div>
+                  <a href="#" class="btn btn-default btn-sm" id="">
+                    Купить
+                  </a>
+                  <a href="#" class="btn btn-default btn-sm" id="">
+                    <span class="glyphicon glyphicon-remove"></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div>
+              <div id="left">
+                <img id="tovar" src="models/thumbnails/thumbnail_rochelle-sofa-3.jpg">
+              </div>
+              <div id="right">
+                <div id="cart-title">Закрытая дверь</div>
+                <div id=cart-price>10 000 р.</div>
+                <div id="cart-desc">Высота: 53 см Диаметр: 45 см Высота: 53 см Диаметр: 45 см</div>
+                <div>
+                  <a href="#" class="btn btn-default btn-sm" id="">
+                    Купить
+                  </a>
+                  <a href="#" class="btn btn-default btn-sm" id="">
+                    <span class="glyphicon glyphicon-remove"></span>
+                  </a>
+                </div>
+              </div>
+            </div> -->
+
+
+
+            <!--  -->
           </div>
       
         </div>
